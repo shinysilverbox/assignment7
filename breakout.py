@@ -67,10 +67,9 @@ class Breakout(GameApp):
     
     LIST MORE ATTRIBUTES (AND THEIR INVARIANTS) HERE IF NECESSARY
     """
-    
-    
+
     # DO NOT MAKE A NEW INITIALIZER!
-    
+
     # THREE MAIN GAMEAPP METHODS
     def start(self):
         """Initializes the application.
@@ -87,8 +86,7 @@ class Breakout(GameApp):
         self._state = STATE_INACTIVE
         self._welcomeMessage = GLabel(text='Press any key to play', font_size=24, font_name='Arial.ttf', x=240, y=310)
 
-    
-    def update(self,dt):
+    def update(self, dt):
         """Animates a single frame in the game.
         
         It is the method that does most of the work. It is NOT in charge of playing the
@@ -148,11 +146,34 @@ class Breakout(GameApp):
         Precondition: dt is a number (int or float)
         """
         # IMPLEMENT ME
-
-        #handle states
+        # handle states
         self.determine_state()
 
-    
+        """
+        STATE_INACTIVE, before a new game has started
+        STATE_NEWGAME, when it is time to create a new game
+        STATE_ACTIVE, when the game is ongoing and ball is in play
+        STATE_COUNTDOWN, when the player is waiting for a new ball
+        STATE_PAUSED, when the game is paused to display a message
+        STATE_COMPLETE
+        """
+        # TODO getters/setters
+        if self._state == STATE_NEWGAME:
+            #create and initliaze game objects
+            self.create_game_objects()
+            pass
+        elif self._state == STATE_INACTIVE:
+            pass
+        elif self._state == STATE_ACTIVE:
+            pass
+        elif self._state == STATE_COUNTDOWN:
+            pass
+        elif self._state == STATE_PAUSED:
+            pass
+        else:
+            # state is STATE_COMPLETE
+            pass
+
     def draw(self):
         """Draws the game objects to the view.
         
@@ -165,13 +186,12 @@ class Breakout(GameApp):
         subcontroller.py from class."""
         # IMPLEMENT ME
 
-        #welcome message if state is inactive
+        # welcome message if state is inactive
         if self._state == STATE_INACTIVE:
             self._welcomeMessage.draw(self.view)
 
         pass
-    
-    
+
     # HELPER METHODS FOR THE STATES GO HERE
     def determine_state(self):
 
@@ -188,10 +208,11 @@ class Breakout(GameApp):
 
         #  STATE_INACTIVE --> STATE_NEWGAME
         if keys_have_been_pressed:
-            # print 'key input received; moving to next state'
-            # use a setter here
-            # TODO: BUG; account for nonlinear state progression
+            # TODO getter/setter
             self._state = STATE_NEWGAME
 
-
         self.previous_number_of_keys_pressed = number_of_keys_pressed
+
+    def create_game_objects(self):
+        """create and initliaze objects for the game"""
+        pass
