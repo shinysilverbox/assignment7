@@ -83,7 +83,9 @@ class Breakout(GameApp):
         invariants. When done, it sets the _state to STATE_INACTIVE and create a message 
         (in attribute _mssg) saying that the user should press to play a game."""
         # IMPLEMENT ME
-        self._message = GLabel(text='Press any key to play', font_size=24, font_name='Arial.ttf', x=240, y=310)
+        self._game = None
+        self._state = STATE_INACTIVE
+        self._welcomeMessage = GLabel(text='Press any key to play', font_size=24, font_name='Arial.ttf', x=240, y=310)
 
     
     def update(self,dt):
@@ -159,11 +161,8 @@ class Breakout(GameApp):
         need to add a draw method to class Play.  We suggest the latter.  See the example 
         subcontroller.py from class."""
         # IMPLEMENT ME
-        if self._message is not None:
-            self._message.draw(self.view)
-            #only display message once
-            self.message = None
-
+        if self._state == STATE_INACTIVE:
+            self._welcomeMessage.draw(self.view)
     
     
     # HELPER METHODS FOR THE STATES GO HERE
