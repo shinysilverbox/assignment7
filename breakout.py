@@ -148,7 +148,10 @@ class Breakout(GameApp):
         Precondition: dt is a number (int or float)
         """
         # IMPLEMENT ME
-        pass
+
+        #handle states
+        self.determine_state()
+
     
     def draw(self):
         """Draws the game objects to the view.
@@ -161,8 +164,34 @@ class Breakout(GameApp):
         need to add a draw method to class Play.  We suggest the latter.  See the example 
         subcontroller.py from class."""
         # IMPLEMENT ME
+
+        #welcome message if state is inactive
         if self._state == STATE_INACTIVE:
             self._welcomeMessage.draw(self.view)
+
+        pass
     
     
     # HELPER METHODS FOR THE STATES GO HERE
+    def determine_state(self):
+
+        # #going from inactive to active
+        # if self._state == STATE_INACTIVE and self.input.key_count > 0:
+        #     self._state = STATE_NEWGAME
+        #     #do new game setup?
+
+        """Processes key presses and regulates game state changes accordingly. Handlers for each game state to follow."""
+        number_of_keys_pressed = self.input.key_count
+
+        # True if at least 1 key was pressed in this frame, and no keys were pressed in the last frame
+        keys_have_been_pressed = number_of_keys_pressed > 0 and self.previous_number_of_keys_pressed == 0
+
+        #  STATE_INACTIVE --> STATE_NEWGAME
+        if keys_have_been_pressed:
+            # print 'key input received; moving to next state'
+            # use a setter here
+            # TODO: BUG; account for nonlinear state progression
+            self._state = STATE_NEWGAME
+
+
+        self.previous_number_of_keys_pressed = number_of_keys_pressed
