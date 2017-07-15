@@ -159,11 +159,14 @@ class Breakout(GameApp):
         """
         # TODO getters/setters
         if self._state == STATE_NEWGAME:
-            #create and initliaze game objects
+            # create and initialize game objects
             self.create_game_objects()
-            pass
+            # call draw_objects() in play
+            self._game.draw_objects(self.view)
+            self._state = STATE_COUNTDOWN
         elif self._state == STATE_INACTIVE:
-            pass
+            # this is already covered in the draw() method below
+            pass
         elif self._state == STATE_ACTIVE:
             pass
         elif self._state == STATE_COUNTDOWN:
@@ -214,5 +217,5 @@ class Breakout(GameApp):
         self.previous_number_of_keys_pressed = number_of_keys_pressed
 
     def create_game_objects(self):
-        """create and initliaze objects for the game"""
-        pass
+        """create and initialize objects for the game"""
+        self._game = Play()

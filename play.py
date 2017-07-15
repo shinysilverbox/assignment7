@@ -55,11 +55,25 @@ class Play(object):
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
     
     # INITIALIZER (standard form) TO CREATE PADDLES AND BRICKS
+    def __init__(self):
+        # create bricks
+        self._bricks = []
+        for i in range(BRICK_ROWS):
+            y = BRICK_Y_OFFSET + (BRICK_HEIGHT / 2)
+            x = BRICK_SEP_H + (BRICK_WIDTH / 2)
+            for j in range(BRICKS_IN_ROW):
+                # create a brick
+                # GRectangle(x=0,y=0,width=10,height=10,fillcolor=colormodel.RED)
+                # TODO
+                brick = GRectangle(x,y,BRICK_WIDTH,BRICK_HEIGHT,colormodel.RED)
     
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
     
     # DRAW METHOD TO DRAW THE PADDLES, BALL, AND BRICKS
-    
+    def draw_objects(self,view):
+        # TODO
+        pass
+
     # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
     
     # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE
