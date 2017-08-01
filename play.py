@@ -65,14 +65,21 @@ class Play(object):
                 # create a brick
                 # GRectangle(x=0,y=0,width=10,height=10,fillcolor=colormodel.RED)
                 # TODO
-                brick = GRectangle(x,y,BRICK_WIDTH,BRICK_HEIGHT,colormodel.RED)
+                brick = GRectangle()
+                brick.x = x
+                brick.y = y
+                brick.width = BRICK_WIDTH
+                brick.height = BRICK_HEIGHT
+                brick.fillcolor = colormodel.RED
+                self._bricks.append(brick)
+        print(self._bricks)
     
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
     
     # DRAW METHOD TO DRAW THE PADDLES, BALL, AND BRICKS
-    def draw_objects(self,view):
-        # TODO
-        pass
+    def draw_objects(self):
+        for brk in self._bricks:
+            brk.draw(view)
 
     # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
     

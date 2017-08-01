@@ -166,7 +166,7 @@ class Breakout(GameApp):
             self._state = STATE_COUNTDOWN
         elif self._state == STATE_INACTIVE:
             # this is already covered in the draw() method below
-            pass
+            pass
         elif self._state == STATE_ACTIVE:
             pass
         elif self._state == STATE_COUNTDOWN:
