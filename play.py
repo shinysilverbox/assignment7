@@ -77,9 +77,9 @@ class Play(object):
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
     
     # DRAW METHOD TO DRAW THE PADDLES, BALL, AND BRICKS
-    def draw_objects(self):
-        for brk in self._bricks:
-            brk.draw(view)
+    def draw_objects(self, view):
+        for self.brk in self._bricks:
+            self.brk.draw(view)
 
     # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
     
