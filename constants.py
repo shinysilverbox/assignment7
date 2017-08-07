@@ -7,7 +7,7 @@ This module global constants for the game Breakout.  These constants
 need to be used in the model, the view, and the controller. As these
 are spread across multiple modules, we separate the constants into
 their own module. This allows all modules to access them."""
-import colormodel
+#import colormodel
 import sys
 
 

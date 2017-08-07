@@ -58,8 +58,8 @@ class Play(object):
     def __init__(self):
         # create bricks
         self._bricks = []
+        y = BRICK_Y_OFFSET + (BRICK_HEIGHT / 2)
         for i in range(BRICK_ROWS):
-            y = BRICK_Y_OFFSET + (BRICK_HEIGHT / 2)
             x = BRICK_SEP_H + (BRICK_WIDTH / 2)
             for j in range(BRICKS_IN_ROW):
                 # create a brick
@@ -72,7 +72,8 @@ class Play(object):
                 brick.height = BRICK_HEIGHT
                 brick.fillcolor = colormodel.RED
                 self._bricks.append(brick)
-        print(self._bricks)
+                x += BRICK_WIDTH + BRICK_SEP_H
+            y += BRICK_HEIGHT + BRICK_SEP_V
     
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
     
