@@ -163,15 +163,21 @@ class Breakout(GameApp):
             self.create_game_objects()
             # call draw_objects() in play
             # self._game.draw_objects(self.view)
+            # STATE_NEWGAME -> STATE_COUNTDOWN
             self._state = STATE_COUNTDOWN
         elif self._state == STATE_INACTIVE:
             # this is already covered in the draw() method below
-            pass
+            # STATE_INACTIVE -> STATE_NEWGAME
+            self._state = STATE_NEWGAME
         elif self._state == STATE_ACTIVE:
+            # STATE_ACTIVE <-> STATE_PAUSED
             pass
         elif self._state == STATE_COUNTDOWN:
             self._game.draw_objects(self.view)
+            # STATE_COUNTDOWN -> STATE_ACTIVE
+            # self._state = STATE_ACTIVE
         elif self._state == STATE_PAUSED:
+            # STATE_PAUSED -> STATE_ACTIVE
             pass
         else:
             # state is STATE_COMPLETE

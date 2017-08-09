@@ -58,7 +58,8 @@ class Play(object):
     def __init__(self):
         # create bricks
         self._bricks = []
-        y = GAME_HEIGHT - BRICK_Y_OFFSET - BRICK_HEIGHT*3
+        # TODO: Why does the following line need 2x the offset?
+        y = GAME_HEIGHT - 2*BRICK_Y_OFFSET - BRICK_HEIGHT
         for i in range(BRICK_ROWS):
             # TODO: Fix left/right margins
             x = BRICK_SEP_H + (BRICK_WIDTH / 2.)
