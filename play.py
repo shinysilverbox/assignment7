@@ -58,9 +58,10 @@ class Play(object):
     def __init__(self):
         # create bricks
         self._bricks = []
-        y = BRICK_Y_OFFSET + (BRICK_HEIGHT / 2)
+        y = GAME_HEIGHT - BRICK_Y_OFFSET - BRICK_HEIGHT*3
         for i in range(BRICK_ROWS):
-            x = BRICK_SEP_H + (BRICK_WIDTH / 2)
+            # TODO: Fix left/right margins
+            x = BRICK_SEP_H + (BRICK_WIDTH / 2.)
             for j in range(BRICKS_IN_ROW):
                 # create a brick
                 # GRectangle(x=0,y=0,width=10,height=10,fillcolor=colormodel.RED)
