@@ -56,33 +56,63 @@ class Play(object):
     
     # INITIALIZER (standard form) TO CREATE PADDLES AND BRICKS
     def __init__(self):
+
         # create bricks
         self._bricks = []
         # TODO: Why does the following line need 2x the offset?
         y = GAME_HEIGHT - 2*BRICK_Y_OFFSET - BRICK_HEIGHT
+
+        colors = [colormodel.RED, colormodel.ORANGE, colormodel.YELLOW,
+                  colormodel.GREEN, colormodel.BLUE]
+        current_color = 0
+        row_counter = 0
+
+        # TODO: Implement the rotating colors
         for i in range(BRICK_ROWS):
+
+            if row_counter == 2:
+                current_color += 1
+                row_counter = 0
+            if current_color == len(colors):
+                current_color = 0
+
             # TODO: Fix left/right margins
             x = BRICK_SEP_H + (BRICK_WIDTH / 2.)
             for j in range(BRICKS_IN_ROW):
                 # create a brick
                 # GRectangle(x=0,y=0,width=10,height=10,fillcolor=colormodel.RED)
-                # TODO
                 brick = GRectangle()
                 brick.x = x
                 brick.y = y
                 brick.width = BRICK_WIDTH
                 brick.height = BRICK_HEIGHT
-                brick.fillcolor = colormodel.RED
+                brick.fillcolor = colors[current_color]
                 self._bricks.append(brick)
                 x += BRICK_WIDTH + BRICK_SEP_H
+
             y += BRICK_HEIGHT + BRICK_SEP_V
-    
+            row_counter += 1
+
+        # create paddle
+        paddle = GRectangle()
+        paddle.x = GAME_WIDTH/2.
+        paddle.y = PADDLE_OFFSET + PADDLE_HEIGHT/2.
+        paddle.width = PADDLE_WIDTH
+        paddle.height = PADDLE_HEIGHT
+        paddle.fillcolor = colormodel.BLACK
+        self._paddle = paddle
+
+
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
+
+    def move_paddle(self):
+        pass
     
     # DRAW METHOD TO DRAW THE PADDLES, BALL, AND BRICKS
     def draw_objects(self, view):
         for self.brk in self._bricks:
             self.brk.draw(view)
+        self._paddle.draw(view)
 
     # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
     
