@@ -8,7 +8,9 @@ need for any any need for additional classes in this module.  If you need more c
 99% of the time they belong in either the play module or the models module. If you 
 are ensure about where a new class should go, 
 post a question on Piazza."""
-from datetime import datetime
+
+from datetime import datetime as dt
+
 from constants import *
 from game2d import *
 from play import *
@@ -180,21 +182,25 @@ class Breakout(GameApp):
             # handle timer logic
 
             # 1) get current time
-            if not self._current_time:
-                self.current_time = ?
-
             # 2) set play objects' counter to be 3
-
             # 3) calculate current display time
 
-            # 4) set display time in play object
+            if not self.now:
+                self.now = dt.now()
+            diff = dt.now() - self.now
+            elapsed = diff.seconds
+            if diff.microseconds >= 500000:
+                elapsed += 1
+            disp_value = 3 - elapsed
 
+            # 4) set display time in play object
+            self._counter = disp_value
 
             # 5) draw objects
             self._game.draw_objects(self.view)
 
             # 6) reset current time to None
-
+            # TODO: reset now, Play._counter to None
             # 7) update date: ? = have > 3 seconds passed?
             # STATE_COUNTDOWN -> STATE_ACTIVE
             # self._state = STATE_ACTIVE
