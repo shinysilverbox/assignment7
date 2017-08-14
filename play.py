@@ -53,10 +53,9 @@ class Play(object):
                   
     LIST MORE ATTRIBUTES (AND THEIR INVARIANTS) HERE IF NECESSARY
     """
-    
-    
+
     # GETTERS AND SETTERS (ONLY ADD IF YOU NEED THEM)
-    
+
     # INITIALIZER (standard form) TO CREATE PADDLES AND BRICKS
     def __init__(self):
 
@@ -64,12 +63,11 @@ class Play(object):
         # TODO: Get this bigger, right color, etc., and get it to actually dynamically update
         self._seconds = ['3', '2', '1']
         self.seconds_count = 0
-        self._counter = GLabel(text=self._seconds[self.seconds_count], x=GAME_WIDTH / 2., y=GAME_HEIGHT / 2., font_size=60)
 
         # create bricks
         self._bricks = []
         # TODO: Why does the following line need 2x the offset?
-        y = GAME_HEIGHT - 2*BRICK_Y_OFFSET - BRICK_HEIGHT
+        y = GAME_HEIGHT - 2 * BRICK_Y_OFFSET - BRICK_HEIGHT
 
         colors = [colormodel.RED, colormodel.ORANGE, colormodel.YELLOW,
                   colormodel.GREEN, colormodel.BLUE]
@@ -104,19 +102,18 @@ class Play(object):
 
         # create paddle
         paddle = GRectangle()
-        paddle.x = GAME_WIDTH/2.
-        paddle.y = PADDLE_OFFSET + PADDLE_HEIGHT/2.
+        paddle.x = GAME_WIDTH / 2.
+        paddle.y = PADDLE_OFFSET + PADDLE_HEIGHT / 2.
         paddle.width = PADDLE_WIDTH
         paddle.height = PADDLE_HEIGHT
         paddle.fillcolor = colormodel.BLACK
         self._paddle = paddle
 
-
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
 
     def move_paddle(self):
         pass
-    
+
     # DRAW METHOD TO DRAW THE PADDLES, BALL, AND BRICKS
     def draw_objects(self, view):
         # bricks
@@ -127,9 +124,10 @@ class Play(object):
         self._paddle.draw(view)
 
         # draw timer object, if need be
-        if self._counter:
-            self._counter.draw(view)
+        if hasattr(self, '_counter'):
+            number = GLabel(text=str(self._counter), x=GAME_WIDTH / 2., y=GAME_HEIGHT / 2., font_size=60)
+            number.draw(view)
 
-    # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
-    
-    # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE
+            # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
+
+            # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE

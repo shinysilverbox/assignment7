@@ -9,7 +9,7 @@ need for any any need for additional classes in this module.  If you need more c
 are ensure about where a new class should go, 
 post a question on Piazza."""
 
-from datetime import datetime as dt
+from datetime import datetime
 
 from constants import *
 from game2d import *
@@ -185,16 +185,16 @@ class Breakout(GameApp):
             # 2) set play objects' counter to be 3
             # 3) calculate current display time
 
-            if not self.now:
-                self.now = dt.now()
-            diff = dt.now() - self.now
+            if not hasattr(self, '_now'):
+                self._now = datetime.now()
+            diff = datetime.now() - self._now
             elapsed = diff.seconds
             if diff.microseconds >= 500000:
                 elapsed += 1
             disp_value = 3 - elapsed
 
             # 4) set display time in play object
-            self._counter = disp_value
+            self._game._counter = disp_value
 
             # 5) draw objects
             self._game.draw_objects(self.view)
