@@ -13,6 +13,9 @@ Their classes are defined in models.py.
 Most of your work on this assignment will be in either this module or models.py.
 Whether a helper method belongs in this module or models.py is often a complicated
 issue.  If you do not know, ask on Piazza and we will answer."""
+
+from datetime import time, datetime
+import time
 from constants import *
 from game2d import *
 from models import *
@@ -57,6 +60,12 @@ class Play(object):
     # INITIALIZER (standard form) TO CREATE PADDLES AND BRICKS
     def __init__(self):
 
+        # initialize counter
+        # TODO: Get this bigger, right color, etc., and get it to actually dynamically update
+        self._seconds = ['3', '2', '1']
+        self.seconds_count = 0
+        self._counter = GLabel(text=self._seconds[self.seconds_count], x=GAME_WIDTH / 2., y=GAME_HEIGHT / 2., font_size=60)
+
         # create bricks
         self._bricks = []
         # TODO: Why does the following line need 2x the offset?
@@ -67,9 +76,9 @@ class Play(object):
         current_color = 0
         row_counter = 0
 
-        # TODO: Implement the rotating colors
         for i in range(BRICK_ROWS):
 
+            # loop through the color array to change brick color every 2 rows
             if row_counter == 2:
                 current_color += 1
                 row_counter = 0
@@ -113,6 +122,16 @@ class Play(object):
         for self.brk in self._bricks:
             self.brk.draw(view)
         self._paddle.draw(view)
+
+        self._time = time.time()
+        if self._counter:
+            self._counter.draw(view)
+            old_time = self._time
+            current_time = time.time()
+            if self.seconds_count <= 2:
+                if current_time - old_time >= 1:
+                    self._seconds_count += 1
+                    self._counter.draw(view)
 
     # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
     

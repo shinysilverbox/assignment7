@@ -8,10 +8,10 @@ need for any any need for additional classes in this module.  If you need more c
 99% of the time they belong in either the play module or the models module. If you 
 are ensure about where a new class should go, 
 post a question on Piazza."""
+from datetime import datetime
 from constants import *
 from game2d import *
 from play import *
-
 
 # PRIMARY RULE: Breakout can only access attributes in play.py via getters/setters
 # Breakout is NOT allowed to access anything in models.py
@@ -161,24 +161,36 @@ class Breakout(GameApp):
         if self._state == STATE_NEWGAME:
             # create and initialize game objects
             self.create_game_objects()
-            # call draw_objects() in play
-            # self._game.draw_objects(self.view)
+
+            self._time = datetime.now()
+
             # STATE_NEWGAME -> STATE_COUNTDOWN
             self._state = STATE_COUNTDOWN
+
         elif self._state == STATE_INACTIVE:
             # this is already covered in the draw() method below
             # STATE_INACTIVE -> STATE_NEWGAME
             self._state = STATE_NEWGAME
+
         elif self._state == STATE_ACTIVE:
             # STATE_ACTIVE <-> STATE_PAUSED
             pass
+
         elif self._state == STATE_COUNTDOWN:
+            old_time = self._time
+            current_time = time.time()
+
+            # TODO: Fix states, get counter to draw
+
             self._game.draw_objects(self.view)
+
             # STATE_COUNTDOWN -> STATE_ACTIVE
             # self._state = STATE_ACTIVE
+
         elif self._state == STATE_PAUSED:
             # STATE_PAUSED -> STATE_ACTIVE
             pass
+
         else:
             # state is STATE_COMPLETE
             pass
