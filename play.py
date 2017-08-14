@@ -119,19 +119,16 @@ class Play(object):
     
     # DRAW METHOD TO DRAW THE PADDLES, BALL, AND BRICKS
     def draw_objects(self, view):
+        # bricks
         for self.brk in self._bricks:
             self.brk.draw(view)
+
+        # paddle
         self._paddle.draw(view)
 
-        self._time = time.time()
+        # draw timer object, if need be
         if self._counter:
             self._counter.draw(view)
-            old_time = self._time
-            current_time = time.time()
-            if self.seconds_count <= 2:
-                if current_time - old_time >= 1:
-                    self._seconds_count += 1
-                    self._counter.draw(view)
 
     # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
     

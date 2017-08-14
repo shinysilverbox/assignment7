@@ -177,13 +177,25 @@ class Breakout(GameApp):
             pass
 
         elif self._state == STATE_COUNTDOWN:
-            old_time = self._time
-            current_time = time.time()
+            # handle timer logic
 
-            # TODO: Fix states, get counter to draw
+            # 1) get current time
+            if not self._current_time:
+                self.current_time = ?
 
+            # 2) set play objects' counter to be 3
+
+            # 3) calculate current display time
+
+            # 4) set display time in play object
+
+
+            # 5) draw objects
             self._game.draw_objects(self.view)
 
+            # 6) reset current time to None
+
+            # 7) update date: ? = have > 3 seconds passed?
             # STATE_COUNTDOWN -> STATE_ACTIVE
             # self._state = STATE_ACTIVE
 
