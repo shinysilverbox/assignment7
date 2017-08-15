@@ -27,6 +27,8 @@ PADDLE_WIDTH  = 58
 PADDLE_HEIGHT = 11
 #: the distance of the (bottom of the) paddle from the bottom
 PADDLE_OFFSET = 30
+#: paddle speed
+PADDLE_SPEED = 4
 
 
 ######### BRICK CONSTANTS #########

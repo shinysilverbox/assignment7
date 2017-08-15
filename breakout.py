@@ -179,9 +179,9 @@ class Breakout(GameApp):
         elif self._state == STATE_ACTIVE:
 
             if 'left' in self._input._keystate and self._input._keystate['left']:
-                self._game.move_paddle(-1)
+                self._game.move_paddle(-1*PADDLE_SPEED)
             if 'right' in self._input._keystate and self._input._keystate['right']:
-                self._game.move_paddle(1)
+                self._game.move_paddle(PADDLE_SPEED)
 
 
 
