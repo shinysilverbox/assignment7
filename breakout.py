@@ -178,8 +178,10 @@ class Breakout(GameApp):
 
         elif self._state == STATE_ACTIVE:
 
-            if self.input.is_key_down('a'):
-                pass
+            if 'left' in self._input._keystate and self._input._keystate['left']:
+                self._game.move_paddle(-1)
+            if 'right' in self._input._keystate and self._input._keystate['right']:
+                self._game.move_paddle(1)
 
 
 

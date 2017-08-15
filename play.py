@@ -111,8 +111,14 @@ class Play(object):
 
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
 
-    def move_paddle(self):
-        pass
+    def move_paddle(self, dx):
+        self._paddle.x += dx
+        if self._paddle.left <= 0:
+            self._paddle.x -= dx
+        if self._paddle.right >= GAME_WIDTH:
+            self._paddle.x -= dx
+
+
 
     # DRAW METHOD TO DRAW THE PADDLES, BALL, AND BRICKS
     def draw_objects(self, view):
