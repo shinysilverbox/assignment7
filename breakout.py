@@ -205,6 +205,11 @@ class Breakout(GameApp):
             # STATE_COUNTDOWN -> STATE_ACTIVE
             # self._state = STATE_ACTIVE
 
+            if diff.seconds >= 3:
+                self._now = None
+                self._counter = None
+                self._state = STATE_ACTIVE
+
         elif self._state == STATE_PAUSED:
             # STATE_PAUSED -> STATE_ACTIVE
             pass
