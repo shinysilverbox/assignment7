@@ -175,8 +175,15 @@ class Breakout(GameApp):
             self._state = STATE_NEWGAME
 
         elif self._state == STATE_ACTIVE:
+
+            if self.input.is_key_down('left'):
+                pass
+
+
+
+
+            self._game.draw_objects(self.view)
             # STATE_ACTIVE <-> STATE_PAUSED
-            pass
 
         elif self._state == STATE_COUNTDOWN:
             # handle timer logic
@@ -199,15 +206,11 @@ class Breakout(GameApp):
             # 5) draw objects
             self._game.draw_objects(self.view)
 
-            # 6) reset current time to None
-            # TODO: reset now, Play._counter to None
-            # 7) update date: ? = have > 3 seconds passed?
-            # STATE_COUNTDOWN -> STATE_ACTIVE
-            # self._state = STATE_ACTIVE
-
+            # 6) wipe now & counter, change state
             if diff.seconds >= 3:
                 self._now = None
                 self._counter = None
+                self._game._counter = None
                 self._state = STATE_ACTIVE
 
         elif self._state == STATE_PAUSED:

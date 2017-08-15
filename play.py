@@ -124,7 +124,7 @@ class Play(object):
         self._paddle.draw(view)
 
         # draw timer object, if need be
-        if hasattr(self, '_counter'):
+        if self._counter is not None:
             number = GLabel(text=str(self._counter), x=GAME_WIDTH / 2., y=GAME_HEIGHT / 2., font_size=60)
             number.draw(view)
 
