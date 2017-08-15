@@ -176,8 +176,8 @@ class Breakout(GameApp):
 
         elif self._state == STATE_ACTIVE:
 
-            if self.input.is_key_down('left'):
-                pass
+            # if self.input.is_key_down('left'):
+            #     pass
 
 
 
