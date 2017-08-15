@@ -149,7 +149,9 @@ class Breakout(GameApp):
         """
         # IMPLEMENT ME
         # handle states
-        self.determine_state()
+
+        #TODO delete if not needed
+        # self.determine_state()
 
         """
         STATE_INACTIVE, before a new game has started
@@ -241,25 +243,28 @@ class Breakout(GameApp):
         pass
 
     # HELPER METHODS FOR THE STATES GO HERE
-    def determine_state(self):
 
-        # #going from inactive to active
-        # if self._state == STATE_INACTIVE and self.input.key_count > 0:
-        #     self._state = STATE_NEWGAME
-        #     #do new game setup?
 
-        """Processes key presses and regulates game state changes accordingly. Handlers for each game state to follow."""
-        number_of_keys_pressed = self.input.key_count
-
-        # True if at least 1 key was pressed in this frame, and no keys were pressed in the last frame
-        keys_have_been_pressed = number_of_keys_pressed > 0 and self.previous_number_of_keys_pressed == 0
-
-        #  STATE_INACTIVE --> STATE_NEWGAME
-        if keys_have_been_pressed:
-            # TODO getter/setter
-            self._state = STATE_NEWGAME
-
-        self.previous_number_of_keys_pressed = number_of_keys_pressed
+    # TODO delete if not needed
+    # def determine_state(self):
+    #
+    #     # #going from inactive to active
+    #     # if self._state == STATE_INACTIVE and self.input.key_count > 0:
+    #     #     self._state = STATE_NEWGAME
+    #     #     #do new game setup?
+    #
+    #     """Processes key presses and regulates game state changes accordingly. Handlers for each game state to follow."""
+    #     number_of_keys_pressed = self.input.key_count
+    #
+    #     # True if at least 1 key was pressed in this frame, and no keys were pressed in the last frame
+    #     keys_have_been_pressed = number_of_keys_pressed > 0 and self.previous_number_of_keys_pressed == 0
+    #
+    #     #  STATE_INACTIVE --> STATE_NEWGAME
+    #     if keys_have_been_pressed:
+    #         # TODO getter/setter
+    #         self._state = STATE_NEWGAME
+    #
+    #     self.previous_number_of_keys_pressed = number_of_keys_pressed
 
     def create_game_objects(self):
         """create and initialize objects for the game"""
