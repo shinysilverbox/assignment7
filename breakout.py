@@ -172,12 +172,13 @@ class Breakout(GameApp):
             self._state = STATE_COUNTDOWN
 
         elif self._state == STATE_INACTIVE:
-            # this is already covered in the draw() method below
-            # STATE_INACTIVE -> STATE_NEWGAME
+            self._welcomeMessage.draw(self.view)
             self._state = STATE_NEWGAME
 
         elif self._state == STATE_ACTIVE:
 
+            # move paddle
+            # TODO: there must be a way of using is_key_down to detect this
             if 'left' in self._input._keystate and self._input._keystate['left']:
                 self._game.move_paddle(-1*PADDLE_SPEED)
             if 'right' in self._input._keystate and self._input._keystate['right']:
@@ -215,6 +216,7 @@ class Breakout(GameApp):
                 self._now = None
                 self._counter = None
                 self._game._counter = None
+                self._game.serve_ball()
                 self._state = STATE_ACTIVE
 
         elif self._state == STATE_PAUSED:
@@ -239,8 +241,7 @@ class Breakout(GameApp):
         # IMPLEMENT ME
 
         # welcome message if state is inactive
-        if self._state == STATE_INACTIVE:
-            self._welcomeMessage.draw(self.view)
+
 
         pass
 
