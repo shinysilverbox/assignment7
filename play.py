@@ -118,7 +118,7 @@ class Play(object):
         # alter velocity
         self._ball._vx = random.uniform(1.0, 5.0)
         self._ball._vx = self._ball._vx * random.choice([-1, 1])
-        self._ball._vy = -3.0
+        self._ball._vy = -15.0
 
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
 
@@ -216,19 +216,27 @@ class Play(object):
     def test_collision_horizontal(self, rect):
         # left
         if (
+            #right side of ball collides with left side of brick
             self._ball.right >= rect.left and self._ball.left <= rect.left and (
-                    self._ball.top >= rect.top and self._ball.bottom <= rect.top or
-                    self._ball.top <= rect.top and self._ball.bottom >= rect.right or
-                    self._ball.top >= rect.bottom and self._ball.bottom <= rect.bottom
+                    #bottom of ball is between top and bottom of brick
+                    self._ball.bottom <= rect.top and self._ball.bottom >= rect.bottom or
+                    #both edges of ball between brick bounds
+                    self._ball.top <= rect.top and self._ball.bottom >= rect.bottom or
+                    #top of ball is between top and bottom of brick
+                    self._ball.top >= rect.bottom and self._ball.top <= rect.top
                 )
         ):
             return True
         # right
         if (
-            self._ball.right >= rect.right and self._ball.left <= rect.right and (
-                    self._ball.top >= rect.top and self._ball.bottom <= rect.top or
-                    self._ball.top <= rect.top and self._ball.bottom >= rect.right or
-                    self._ball.top >= rect.bottom and self._ball.bottom <= rect.bottom
+            #left side of ball collides with right side of brick
+            self._ball.left <= rect.right and self._ball.right >= rect.right and (
+                    # bottom of ball is between top and bottom of brick
+                    self._ball.bottom <= rect.top and self._ball.bottom >= rect.bottom or
+                    # both edges of ball between brick bounds
+                    self._ball.top <= rect.top and self._ball.bottom >= rect.bottom or
+                    # top of ball is between top and bottom of brick
+                    self._ball.top >= rect.bottom and self._ball.top <= rect.top
                 )
         ):
             return True
