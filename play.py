@@ -118,7 +118,7 @@ class Play(object):
         # alter velocity
         self._ball._vx = random.uniform(1.0, 5.0)
         self._ball._vx = self._ball._vx * random.choice([-1, 1])
-        self._ball._vy = -5.0
+        self._ball._vy = -3.0
 
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
 
@@ -151,8 +151,29 @@ class Play(object):
         # draw ball if in correct state
         if state == STATE_ACTIVE:
             self.move_ball()
+            self.collisions()
             self._ball.draw(view)
 
-        # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
+    # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
+    def collisions(self):
+        # walls
+        # left
+        if self._ball.left <= 0:
+            self._ball._vx = -1 * self._ball._vx
+        # top
+        if self._ball.top >= GAME_HEIGHT:
+            self._ball._vy = -1 * self._ball._vy
+        # right
+        if self._ball.right >= GAME_WIDTH:
+            self._ball._vx = -1 * self._ball._vx
+        # bottom
+        # subtract a life
+        if self._ball.bottom <= 0:
+            self._ball._vy = -1 * self._ball._vy
 
-        # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE
+        # paddle
+
+        # bricks
+        pass
+
+    # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE
