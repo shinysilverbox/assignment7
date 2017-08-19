@@ -129,7 +129,6 @@ class Play(object):
         if self._paddle.right >= GAME_WIDTH:
             self._paddle.x -= dx
 
-
     def move_ball(self):
         self._ball.x = self._ball.x + self._ball._vx
         self._ball.y = self._ball.y + self._ball._vy
@@ -172,8 +171,12 @@ class Play(object):
             self._ball._vy = -1 * self._ball._vy
 
         # paddle
+        if (self._ball.bottom <= self._paddle.top and
+                (self._ball.left >= self._paddle.left and self._ball.left <= self._paddle.right or
+                             self._ball.right >= self._paddle.left and self._ball.right <= self._paddle.right)):
+            self._ball._vy = self._ball._vy * -1
 
         # bricks
         pass
 
-    # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE
+        # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE
