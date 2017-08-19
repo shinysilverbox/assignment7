@@ -150,8 +150,6 @@ class Breakout(GameApp):
         # IMPLEMENT ME
         # handle states
 
-        #TODO delete if not needed
-        # self.determine_state()
 
         """
         STATE_INACTIVE, before a new game has started
@@ -177,6 +175,9 @@ class Breakout(GameApp):
 
         elif self._state == STATE_ACTIVE:
 
+            # TODO: serve the ball
+
+
             # move paddle
             # TODO: there must be a way of using is_key_down to detect this
             if 'left' in self._input._keystate and self._input._keystate['left']:
@@ -187,7 +188,7 @@ class Breakout(GameApp):
 
 
 
-            self._game.draw_objects(self.view)
+            self._game.draw_objects(self.view, self._state)
             # STATE_ACTIVE <-> STATE_PAUSED
 
         elif self._state == STATE_COUNTDOWN:
@@ -209,7 +210,7 @@ class Breakout(GameApp):
             self._game._counter = disp_value
 
             # 5) draw objects
-            self._game.draw_objects(self.view)
+            self._game.draw_objects(self.view, self._state)
 
             # 6) wipe now & counter, change state
             if diff.seconds >= 3:
@@ -246,29 +247,6 @@ class Breakout(GameApp):
         pass
 
     # HELPER METHODS FOR THE STATES GO HERE
-
-
-    # TODO delete if not needed
-    # def determine_state(self):
-    #
-    #     # #going from inactive to active
-    #     # if self._state == STATE_INACTIVE and self.input.key_count > 0:
-    #     #     self._state = STATE_NEWGAME
-    #     #     #do new game setup?
-    #
-    #     """Processes key presses and regulates game state changes accordingly. Handlers for each game state to follow."""
-    #     number_of_keys_pressed = self.input.key_count
-    #
-    #     # True if at least 1 key was pressed in this frame, and no keys were pressed in the last frame
-    #     keys_have_been_pressed = number_of_keys_pressed > 0 and self.previous_number_of_keys_pressed == 0
-    #
-    #     #  STATE_INACTIVE --> STATE_NEWGAME
-    #     if keys_have_been_pressed:
-    #         # TODO getter/setter
-    #         self._state = STATE_NEWGAME
-    #
-    #     self.previous_number_of_keys_pressed = number_of_keys_pressed
-
     def create_game_objects(self):
         """create and initialize objects for the game"""
         self._game = Play()

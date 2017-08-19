@@ -109,6 +109,17 @@ class Play(object):
         paddle.fillcolor = colormodel.BLACK
         self._paddle = paddle
 
+        # create ball
+        x_pos = GAME_WIDTH / 2
+        y_pos = GAME_HEIGHT / 2
+        self._ball = Ball(x=x_pos, y=y_pos, width=BALL_DIAMETER, height=BALL_DIAMETER, fillcolor=colormodel.RED)
+
+    def serve_ball(self):
+        # alter velocity
+        self._ball._vx = random.uniform(1.0, 5.0)
+        self._ball._vx = self._ball._vx * random.choice([-1, 1])
+        self._ball._vy = -5.0
+
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
 
     def move_paddle(self, dx):
@@ -119,29 +130,14 @@ class Play(object):
             self._paddle.x -= dx
 
     def serve_ball(self):
-
-        # create ball
-        ball = GEllipse()
-        # ball.left = 0
-        ball.x = BALL_DIAMETER + 15
-        ball.y = GAME_HEIGHT / 2
-        ball.fillcolor = colormodel.BLACK
-        # alter size?
-        ball._vx = random.uniform(1.0, 5.0)
-        ball._vx = ball._vx * random.choice([-1, 1])
-        ball._vy = -5.0
-        # the following assignment is explicitly stated to need its own method
-        # TODO: figure out how to do this the right way
-        self._ball = ball
+        pass
 
     def move_ball(self):
         self._ball.x = self._ball.x + self._ball._vx
         self._ball.y = self.ball.y
 
-
-
     # DRAW METHOD TO DRAW THE PADDLE, BALL, AND BRICKS
-    def draw_objects(self, view):
+    def draw_objects(self, view, state):
         # bricks
         for self.brk in self._bricks:
             self.brk.draw(view)
@@ -154,9 +150,21 @@ class Play(object):
             number = GLabel(text=str(self._counter), x=GAME_WIDTH / 2., y=GAME_HEIGHT / 2., font_size=60)
             number.draw(view)
 
-        # ball TODO: need some condition to detect if countdown has run out
-        self._ball.draw(view)
+        # draw ball if in correct state
+        if state == STATE_ACTIVE:
+            self._ball.draw(view)
 
-            # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
+        # TODO delete this after figuring out how to draw things
+        # create ball
+        ball = GEllipse()
+        ball.x = BALL_DIAMETER / 2
+        ball.y = GAME_HEIGHT / 2
+        ball.fillcolor = colormodel.RED
+        ball._vx = 0
+        ball._vy = 0
+        ball.draw(view)
 
-            # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE
+
+        # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
+
+        # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE
