@@ -129,12 +129,10 @@ class Play(object):
         if self._paddle.right >= GAME_WIDTH:
             self._paddle.x -= dx
 
-    def serve_ball(self):
-        pass
 
     def move_ball(self):
         self._ball.x = self._ball.x + self._ball._vx
-        self._ball.y = self.ball.y
+        self._ball.y = self._ball.y + self._ball._vy
 
     # DRAW METHOD TO DRAW THE PADDLE, BALL, AND BRICKS
     def draw_objects(self, view, state):
@@ -152,18 +150,8 @@ class Play(object):
 
         # draw ball if in correct state
         if state == STATE_ACTIVE:
+            self.move_ball()
             self._ball.draw(view)
-
-        # TODO delete this after figuring out how to draw things
-        # create ball
-        ball = GEllipse()
-        ball.x = BALL_DIAMETER / 2
-        ball.y = GAME_HEIGHT / 2
-        ball.fillcolor = colormodel.RED
-        ball._vx = 0
-        ball._vy = 0
-        ball.draw(view)
-
 
         # HELPER METHODS FOR PHYSICS AND COLLISION DETECTION
 

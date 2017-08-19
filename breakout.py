@@ -177,16 +177,12 @@ class Breakout(GameApp):
 
             # TODO: serve the ball
 
-
             # move paddle
             # TODO: there must be a way of using is_key_down to detect this
             if 'left' in self._input._keystate and self._input._keystate['left']:
                 self._game.move_paddle(-1*PADDLE_SPEED)
             if 'right' in self._input._keystate and self._input._keystate['right']:
                 self._game.move_paddle(PADDLE_SPEED)
-
-
-
 
             self._game.draw_objects(self.view, self._state)
             # STATE_ACTIVE <-> STATE_PAUSED
