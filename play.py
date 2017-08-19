@@ -171,12 +171,68 @@ class Play(object):
             self._ball._vy = -1 * self._ball._vy
 
         # paddle
+
+        # TODO: side collision maybe:
+        # top of paddle collision
         if (self._ball.bottom <= self._paddle.top and
                 (self._ball.left >= self._paddle.left and self._ball.left <= self._paddle.right or
                              self._ball.right >= self._paddle.left and self._ball.right <= self._paddle.right)):
             self._ball._vy = self._ball._vy * -1
 
         # bricks
-        pass
+        for index in range(len(self._bricks)):
+            if self.test_collision_vertical(self._bricks[index]):
+                self._bricks.pop(index)
+                self._ball._vy = -1 * self._ball._vy
+                break
+            if self.test_collision_horizontal(self._bricks[index]):
+                self._bricks.pop(index)
+                self._ball._vx = -1 * self._ball._vx
+                break
+
+
+    def test_collision_vertical(self, rect):
+        # top
+        if (
+          self._ball.bottom <= rect.top and self._ball.bottom >= rect.bottom and (
+                    self._ball.left <= rect.left and self._ball.right >= rect.left or
+                    self._ball.left >= rect.left and self._ball.right <= rect.right or
+                    self._ball.left <= rect.right and self._ball.right >= rect.right
+                )
+        ):
+            return True
+        # bottom
+        if (
+          self._ball.top >= rect.bottom and self._ball.top <= rect.top and (
+                    self._ball.left <= rect.left and self._ball.right >= rect.left or
+                    self._ball.left >= rect.left and self._ball.right <= rect.right or
+                    self._ball.left <= rect.right and self._ball.right >= rect.right
+                )
+        ):
+            return True
+
+        return False
+
+    def test_collision_horizontal(self, rect):
+        # left
+        if (
+            self._ball.right >= rect.left and self._ball.left <= rect.left and (
+                    self._ball.top >= rect.top and self._ball.bottom <= rect.top or
+                    self._ball.top <= rect.top and self._ball.bottom >= rect.right or
+                    self._ball.top >= rect.bottom and self._ball.bottom <= rect.bottom
+                )
+        ):
+            return True
+        # right
+        if (
+            self._ball.right >= rect.right and self._ball.left <= rect.right and (
+                    self._ball.top >= rect.top and self._ball.bottom <= rect.top or
+                    self._ball.top <= rect.top and self._ball.bottom >= rect.right or
+                    self._ball.top >= rect.bottom and self._ball.bottom <= rect.bottom
+                )
+        ):
+            return True
+
+        return False
 
         # ADD ANY ADDITIONAL METHODS (FULLY SPECIFIED) HERE
