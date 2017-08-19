@@ -167,7 +167,7 @@ class Play(object):
         if self._ball.right >= GAME_WIDTH:
             self._ball._vx = -1 * self._ball._vx
         # bottom
-        # subtract a life
+        # TODO: subtract a life, serve ball or game over
         if self._ball.bottom <= 0:
             self._ball._vy = -1 * self._ball._vy
 
