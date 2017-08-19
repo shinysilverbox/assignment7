@@ -118,7 +118,7 @@ class Play(object):
         # alter velocity
         self._ball._vx = random.uniform(1.0, 5.0)
         self._ball._vx = self._ball._vx * random.choice([-1, 1])
-        self._ball._vy = -15.0
+        self._ball._vy = -3.0
 
     # UPDATE METHODS TO MOVE PADDLE, SERVE AND MOVE THE BALL
 
@@ -174,10 +174,17 @@ class Play(object):
 
         # TODO: side collision maybe:
         # top of paddle collision
-        if (self._ball.bottom <= self._paddle.top and
-                (self._ball.left >= self._paddle.left and self._ball.left <= self._paddle.right or
-                             self._ball.right >= self._paddle.left and self._ball.right <= self._paddle.right)):
+        # if (self._ball.bottom <= self._paddle.top and
+        #         (self._ball.left >= self._paddle.left and self._ball.left <= self._paddle.right or
+        #                      self._ball.right >= self._paddle.left and self._ball.right <= self._paddle.right)):
+        #     self._ball._vy = self._ball._vy * -1
+        if self.test_collision_vertical(self._paddle):
+            #TODO determine multiplier based on difference between horizontal center of paddle and horizontal center of ball
+            multiplier = 1
+            self._ball._vx = self._ball._vx * multiplier
             self._ball._vy = self._ball._vy * -1
+        if self.test_collision_horizontal(self._paddle):
+            self._ball._vx = -1 * self._ball._vx
 
         # bricks
         for index in range(len(self._bricks)):
